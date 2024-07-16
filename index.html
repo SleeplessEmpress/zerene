@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zerene Philippines Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap&family=Bebas+Neue&display=swap">
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2d2d2d;
+        }
+        .header {
+            background-image: url('header.png'); /* Add your background image URL here */
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff; /* Ensure text is readable on the background image */
+        }
+        .header img {
+            height: 50px;
+        }
+        .header .menu {
+            display: flex;
+            gap: 20px;
+        }
+        .header .menu div {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .header .menu div:hover {
+            color: #007BFF;
+        }
+        .title {
+            text-align: center;
+            font-family: 'London', bold;
+            font-size: 3em;
+            color: darkgoldenrod;
+            margin: 1px 0;
+        }
+        .product-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .product-card {
+            background-color: #fff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product-card h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .product-card p {
+            color: #555;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+        .product-card .price {
+            color: #FF5722;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .product-card .old-price {
+            color: #aaa;
+            text-decoration: line-through;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+        .product-card .add-to-cart {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: gold;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        .product-card .add-to-cart:hover {
+            background-color: darkgoldenrod;
+        }
+        .footer-section {
+            background-color: #fff;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            text-align: center;
+        }
+        .footer-section .column {
+            flex: 1;
+        }
+        .footer-section h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .footer-section p {
+            color: #777;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+        .footer-section a {
+            display: inline-block;
+            margin: 10px 0;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .footer p {
+            margin: 0;
+            color: #777;
+        }
+        .social-icons {
+            margin-top: 20px;
+        }
+        .social-icons a {
+            color: #555;
+            margin: 0 10px;
+            font-size: 1.2em;
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            color: #007BFF;
+        }
+        .promo-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background-color: gold;
+            color: black;
+            padding: 30px;
+            text-align: center;
+            font-size: 1.5em;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            font-family: 'Bebas Neue', cursive;
+            transition: transform 0.3s ease-in-out;
+            opacity: 0;
+        }
+        .promo-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        .promo-popup .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="promo-popup" id="promoPopup">
+    FREE GIFTS ARE WAITING! WHEN YOU USE OUR PROMO CODE "GROUP3SAKALAM".
+    <span class="close-btn" id="closeBtn">&times;</span>
+</div>
+
+<div class="header">
+    <img src="logo.png" alt="Zerene Logo">
+    <div class="title">ZERENE</div>
+    <div class="menu">
+        <div>Testimonials</div>
+        <div>Reviews</div>
+    </div>
+</div>
+
+<div class="product-section">
+    <div class="product-card">
+        <img src="product1.jpg" alt="Zerene Recliner">
+        <h2>ZERENE RECLINER</h2>
+        <p><span class="old-price">₱20,000.00</span> <span class="price">₱15,000.00</span></p>
+        <a href="#" class="add-to-cart">ADD TO CART</a>
+    </div>
+    <div class="product-card">
+        <img src="product2.jpg" alt="Zerene Deluxe">
+        <h2>ZERENE DELUXE</h2>
+        <p><span class="old-price">₱38,000.00</span> <span class="price">₱30,000.00</span></p>
+        <a href="#" class="add-to-cart">ADD TO CART</a>
+    </div>
+    <div class="product-card">
+        <img src="product3.jpg" alt="Zerene VIP">
+        <h2>ZERENE VIP</h2>
+        <p><span class="old-price">₱200,000.00</span> <span class="price">₱150,000.00</span></p>
+        <a href="#" class="add-to-cart">ADD TO CART</a>
+    </div>
+    <div class="product-card">
+        <img src="product4.jpg" alt="Zerene King">
+        <h2>ZERENE KING</h2>
+        <p><span class="old-price">₱98,000.00</span> <span class="price">₱75,000.00</span></p>
+        <a href="#" class="add-to-cart">ADD TO CART</a>
+    </div>
+    <div class="product-card">
+        <img src="product5.jpg" alt="Zerene Executive Pro">
+        <h2>ZERENE EXECUTIVE PRO</h2>
+        <p><span class="old-price">₱345,000.00</span> <span class="price">₱280,000.00</span></p>
+        <a href="#" class="add-to-cart">ADD TO CART</a>
+    </div>
+</div>
+
+<div class="footer-section">
+    <div class="column">
+        <h3>EXCLUSIVE MONTHLY DEALS</h3>
+        <p>Take advantage of our exclusive monthly deals and transform your home into a sanctuary of relaxation. Shop now to experience the ultimate comfort of our massage chairs and saunas while saving big!</p>
+    </div>
+    <div class="column">
+        <h3>LIFETIME WARRANTY</h3>
+        <p>Zerene Philippines is willing to lend a hand anytime and anywhere! Get to know more about the warranty services.</p>
+    </div>
+    <div class="column">
+        <h3>FREE SHIPPING</h3>
+        <p>The soothing haven experience will be delivered right to the front of your door! Explore more to find out the areas covered by the offer.</p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>ZERENE INC © 2024 Philippines</p>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const popup = document.getElementById('promoPopup');
+        const closeBtn = document.getElementById('closeBtn');
+
+        // Show popup after a delay
+        setTimeout(() => {
+            popup.classList.add('show');
+        }, 1000); // 1 second delay
+
+        // Close button functionality
+        closeBtn.addEventListener('click', function() {
+            popup.classList.remove('show');
+        });
+    });
+</script>
+
+</body>
+</html>
